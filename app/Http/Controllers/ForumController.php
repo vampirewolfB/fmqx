@@ -14,9 +14,8 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $comments = Comment::All();
         $posts = Post::All();
-        return view('forum.index')->with(compact('comments', 'posts'));
+        return view('forum.index')->with(compact('posts'));
     }
 
     /**
@@ -53,7 +52,9 @@ class ForumController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $comments = Comment::All();
+        return view('forum.show')->with(compact('post', 'comments'));
     }
 
     /**

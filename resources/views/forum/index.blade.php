@@ -11,28 +11,15 @@
             <thead>
                 <td>Subject</td>
                 <td>Content</td>
+                <td></td>
+                <td></td>
             </thead>
             <tbody>
                 @foreach($posts as $post)
                     <tr>
                         <td>{{ $post->subject }}</td>
                         <td>{{ $post->content }}</td>
-                        <table class="table">
-                            <thead>
-                                <td>Comment</td>
-                                <td>User</td>
-                            </thead>
-                            <tbody>
-                                @foreach($comments as $comment)
-                                    @if($comment->post_id == $post->id)
-                                        <tr>
-                                            <td>{{ $comment->content }}</td>
-                                            <td>{{ $comment->user->name }}</td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <td><a href="{{ route('forum.show', $post->id) }}" class="">Toon post</a></td>
                     </tr>
                 @endforeach
             </tbody>
